@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Form Fighters! Poetic Forms Quest</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap">
+<style>
+:root{--b1:#fff0dc;--b2:#e9e0ff;--card:#fff;--ink:#241a3a;--mut:#6b6385;--hl:#fff1a8;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--b1:#3a1f0c;--b2:#241650;--card:#251b3f;--ink:#f4efff;--mut:#b8afd6;--hl:#5d4d10}}
+:root[data-theme="dark"]{--b1:#3a1f0c;--b2:#241650;--card:#251b3f;--ink:#f4efff;--mut:#b8afd6;--hl:#5d4d10}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%}
+body{font-family:'Baloo 2',system-ui,'Segoe UI',sans-serif;color:var(--ink);background:linear-gradient(135deg,var(--b1),var(--b2)) fixed;padding:12px}
+#w{max-width:860px;margin:0 auto}
+.hd{display:flex;gap:10px;justify-content:space-between;align-items:center;background:var(--card);border-radius:999px;padding:8px 18px;box-shadow:0 4px 14px #0002;font-weight:700;font-size:clamp(14px,3.4vw,20px)}
+h1{font-size:clamp(28px,7vw,52px);margin:.4em 0 0;text-align:center;background:linear-gradient(90deg,#ff9a3d,#ff5f9e,#9b5de5,#3b8cff);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:800}
+h2{font-size:clamp(19px,4.4vw,30px);margin:.2em 0}
+p{font-size:clamp(16px,3.2vw,22px);line-height:1.4;margin:.4em 0}.sub{text-align:center;color:var(--mut)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:14px}
+.wc{border:0;border-radius:20px;padding:16px 10px;color:#fff;background:linear-gradient(135deg,var(--a),var(--b));display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;font-family:inherit;font-size:clamp(15px,3.2vw,19px);box-shadow:0 6px 0 #0003;transition:transform .15s}
+.wc:hover:not(:disabled){transform:translateY(-4px) rotate(-1deg)}.wc:disabled{filter:grayscale(.8);opacity:.6;cursor:default}
+.wc .em{font-size:44px}.boss{--a:#ff3d3d;--b:#7a1fa2;grid-column:1/-1}
+.card{background:var(--card);border-radius:22px;padding:18px 20px;margin-top:14px;box-shadow:0 6px 18px #0002;border-top:8px solid var(--a,#9b5de5)}
+.big{font-size:60px;text-align:center}.std{display:inline-block;background:#2f80ed;color:#fff;border-radius:999px;padding:2px 12px;font-size:14px}
+.ex,.pm{border-radius:12px;padding:10px 14px;font-size:clamp(16px,3.4vw,22px);margin:8px 0;line-height:1.6}
+.ex{border:3px dashed var(--mut)}.pm{background:var(--hl)}
+mark{background:#ffb037;color:#241a3a;border-radius:6px;padding:0 4px}
+.go,.back{font-family:inherit;font-weight:700;font-size:clamp(16px,3.4vw,20px);border:0;border-radius:999px;padding:10px 22px;cursor:pointer;margin:8px 6px 0 0}
+.go{background:linear-gradient(90deg,#ff9a3d,#ff5f9e);color:#fff;box-shadow:0 4px 0 #0003}.back{background:var(--mut);color:#fff}
+.op{display:block;width:100%;text-align:left;margin:8px 0;padding:12px 16px;border:0;border-radius:14px;color:#fff;font-family:inherit;font-weight:700;font-size:clamp(15px,3.2vw,20px);cursor:pointer;box-shadow:0 4px 0 #0003}
+.op:nth-of-type(4n+1){background:#e0475b}.op:nth-of-type(4n+2){background:#2f80ed}.op:nth-of-type(4n+3){background:#1e9e6a}.op:nth-of-type(4n+4){background:#8e4fd0}
+.op.bad{animation:sh .35s;opacity:.35}.op.right{outline:4px solid #ffd23f;transform:scale(1.02)}.op:disabled{cursor:default}
+@keyframes sh{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.fbk{border-radius:12px;padding:8px 12px;margin-top:8px;font-size:clamp(15px,3vw,20px)}.g{background:#12a05c33}.r{background:#e0475b33}
+.bar{height:12px;border-radius:9px;background:#0002;overflow:hidden;margin-top:14px}.bar i{display:block;height:100%;background:linear-gradient(90deg,#ff9a3d,#ff5f9e);transition:width .4s}
+textarea{width:100%;border-radius:12px;border:3px solid var(--mut);padding:10px;font:inherit;font-size:clamp(15px,3vw,20px);background:var(--card);color:var(--ink)}
+.cf{position:fixed;top:-30px;font-size:26px;animation:fall 2.2s linear forwards;pointer-events:none;z-index:9}@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+</style></head><body><div id="w"><div id="hd" class="hd"></div><div id="pg"></div></div>
+<script>
+const $=id=>document.getElementById(id),words=t=>t.trim().split(/\s+/).filter(Boolean);
+const lines=t=>t.split('\n').map(x=>x.trim()).filter(Boolean),e=l=>(words(l).pop()||'').toLowerCase().replace(/[^a-z]/g,'').slice(-2);
+const S3=['Couplet','Tercet','Quatrain'],S2=['AABB','ABAB','ABBA'],FM=['Sonnet','Villanelle','Free verse'];
+const PV='The tide comes back to find the shore,<br>though storms have tossed it far from view.<br>It always has; it will once more.<br><br>I stand and watch the gulls explore<br>the foam the wind has tumbled through.<br>The tide comes back to find the shore.<br><br>I count the waves, then count some more,<br>and every wave brings something new.<br>It always has; it will once more.';
+const W=[
+{n:'Lines & Stanzas',e:'🧱',c:['#ff9a3d','#ff5f9e'],s:'ELA.6.R.1.4 • Poetic Form',d:'A <b>line</b> is one row of words. A <b>stanza</b> is a group of lines, like a paragraph. Stanzas have names: <b>couplet</b> (2 lines), <b>tercet</b> (3), <b>quatrain</b> (4).',x:'<mark>Couplet</mark><br>The rain taps softly on the glass,<br>and all the busy hours pass.',k:'Clue: count the lines in the stanza',
+ q:[['A group of lines in a poem is called a…',['Stanza','Chapter','Title'],0,'A stanza is a group of lines.'],
+ ['What is a two-line stanza called?',['Tercet','Couplet','Quatrain'],1,'Couplet = 2 lines.'],
+ ['How many lines does this stanza have, and what is it called?',S3,1,'Three lines make a tercet.','Morning light spills gold<br>across the sleeping town,<br>and the first bird sings.'],
+ ['A stanza with four lines is a…',['Quatrain','Couplet','Tercet'],0,'Quatrain = 4 lines.']],
+ p:'Write a <b>couplet</b> (2 lines) about something you see at school. Put each line on its own row.',a:'The clock ticks slowly on the wall,<br>while I wait for the bell to call.',h:'Hint: write 2 lines, each on its own row.',v:t=>lines(t).length>=2},
+{n:'Rhyme Scheme',e:'🎵',c:['#ff5f9e','#9b5de5'],s:'ELA.6.R.1.4 • Poetic Form',d:'<b>End rhyme</b> is when lines end with the same sound. A <b>rhyme scheme</b> uses letters: same sound = same letter.',x:'The moon is bright <mark>(A)</mark><br>the stars are shy <mark>(B)</mark><br>we say goodnight <mark>(A)</mark><br>and wave goodbye <mark>(B)</mark> → <b>ABAB</b>',k:'Clue: match the last words of each line',
+ q:[['What is the rhyme scheme?',S2,1,'gray/away is A, in/skin is B: ABAB.','The sky turned gray,<br>the clouds rolled in,<br>we ran away,<br>and got wet to the skin.'],
+ ['What is the rhyme scheme?',['ABAB','AABB','ABCD'],1,'down/frown and by/sigh give AABB.','The cat sat down,<br>she wore a frown,<br>the dog ran by,<br>and gave a sigh.'],
+ ['What is the rhyme scheme?',S2.slice().reverse(),0,'bright/night are A and day/play are B, so ABBA.','The sun is bright,<br>a happy day,<br>we run and play<br>until the night.'],
+ ['Words that rhyme at the END of lines are called…',['End rhyme','Internal rhyme','Free verse'],0,'End rhyme sits at the ends of lines.']],
+ p:'Write a 4-line poem with the rhyme scheme <b>ABAB</b> (lines 1 and 3 rhyme, lines 2 and 4 rhyme).',a:'The sun comes up in the morning light,<br>the birds begin to sing,<br>the world is warm and bright,<br>and I can feel the spring.',h:'Hint: 4 lines. Lines 1 and 3 should end with similar spelling (like light/bright), and lines 2 and 4 too (sing/spring).',v:t=>{const L=lines(t);return L.length>=4&&e(L[0])==e(L[2])&&e(L[1])==e(L[3])}},
+{n:'Poetic Devices',e:'🎨',c:['#3b8cff','#2fd0c4'],s:'ELA.6.R.1.4 + R.3.1 • Poetic Devices',d:'<b>Repetition</b> repeats words or lines for emphasis. <b>Alliteration</b> repeats starting sounds. <b>Imagery</b> uses sense details. <b>Refrain</b> is a line that repeats.',x:'<mark>Slowly the silver stream slid south.</mark> (alliteration)<br><mark>Rain, rain, rain</mark> (repetition)',k:'Clue: what is repeated, and why?',
+ q:[['What device is used here?',['Repetition','Alliteration','Simile'],0,'Repeating “rain” stresses how constant it is.','Rain, rain, rain,<br>falling on the roof.<br>Rain, rain, rain,<br>I can’t hear a thing.'],
+ ['What device repeats the S sound?',['Imagery','Repetition','Alliteration'],2,'Repeating starting sounds is alliteration.','Slowly the silver stream slid south.'],
+ ['Which senses does the imagery appeal to?',['Sight only','Smell, taste, and hearing','Touch only'],1,'Cinnamon smell, sweet taste, and the singing kettle.','The cinnamon smell curled up the stairs,<br>warm and sweet,<br>while the kettle sang.'],
+ ['Why do poets use repetition?',['To fill space','To emphasize an important idea or feeling','To list facts'],1,'Repeating something makes it stand out.']],
+ p:'Write 2 lines that use <b>repetition</b> (repeat a word at least twice).',a:'Run, run, run to the finish line,<br>run until the race is mine.',h:'Hint: write 2 lines and repeat a word (3+ letters) at least twice.',v:t=>{const w=words(t.toLowerCase().replace(/[^a-z\s]/g,'')).filter(x=>x.length>=3),c={};w.forEach(x=>c[x]=(c[x]||0)+1);return lines(t).length>=2&&Object.values(c).some(v=>v>=2)}},
+{n:'End Stop vs. Enjambment',e:'🏃',c:['#12a05c','#ffd23f'],s:'ELA.6.R.1.4 • Line Structure',d:'An <b>end-stopped</b> line ends with a complete thought and punctuation. <b>Enjambment</b> lets a sentence run over the line break with no stop, so it flows or rushes forward.',x:'<mark>End-stopped:</mark> The bell rings.<br><mark>Enjambed:</mark> I ran and ran until the<br>hill gave way to open sky.',k:'Clue: is there punctuation at the end of the line?',
+ q:[['Which type of line is “The bell rings.”?',['End-stopped','Enjambed','Rhymed'],0,'A period and a complete thought make it end-stopped.','The bell rings.<br>The hall fills with feet.<br>The day begins.'],
+ ['What is it called when a sentence runs over the line break?',['Enjambment','End stop','Stanza'],0,'The thought continues onto the next line.','I ran and ran until the<br>hill gave way to open<br>sky.'],
+ ['What effect does enjambment often create?',['A full stop after each idea','A flowing, rushing feel that pulls the reader forward','A rhyme scheme'],1,'With no stop, the reader keeps moving.'],
+ ['Line 2 is…',['End-stopped','Enjambed','A couplet'],1,'The sentence keeps going into line 3.','The storm is here.<br>Lightning splits the sky and thunder<br>shakes the house.']],
+ p:'Write 3 lines about a storm. <b>Line 1 must not end with punctuation</b> (enjambment) and line 3 ends with a period.',a:'The storm rolled in over the<br>hills and shook the windows with<br>its thunder.',h:'Hint: 3 lines. No punctuation at the end of line 1, and a period at the end of line 3.',v:t=>{const L=lines(t);return L.length>=3&&!/[.!?,;:]$/.test(L[0])&&/[.!?]$/.test(L[2])}},
+{n:'The Sonnet',e:'🍰',c:['#8e4fd0','#ff5f9e'],s:'ELA.6.R.1.4 • Sonnet',d:'A <b>sonnet</b> has <b>14 lines</b>. A Shakespearean sonnet has three quatrains and a final <b>couplet</b> (ABAB CDCD EFEF GG). Many sonnets have a <b>volta</b>, a turn in thought or feeling.',x:'Quatrain + Quatrain + Quatrain + <mark>Couplet</mark><br>The last two lines often wrap up the idea.',k:'Clue: 14 lines, ends with a rhyming couplet',
+ q:[['How many lines does a sonnet have?',['10','14','19'],1,'Sonnets have 14 lines.'],
+ ['A Shakespearean sonnet ends with a…',['Refrain','Tercet','Couplet'],2,'The final two lines rhyme.'],
+ ['The “turn” (volta) in a sonnet is…',['The title','A shift in thought or feeling','The first line'],1,'The poet changes direction or shows a new idea.'],
+ ['What is the effect of this ending couplet?',['It starts a new topic','It wraps up the poem with a hopeful conclusion','It repeats a refrain'],1,'The rhyming couplet gives a neat, hopeful ending.','I thought the dark would last for all my days,<br>but dawn arrived with gold and gentle rays.']],
+ p:'Write a <b>final couplet</b> for a sonnet: 2 lines that rhyme and wrap up an idea.',a:'I thought the dark would last for all my days,<br>but dawn arrived with gold and gentle rays.',h:'Hint: 2 lines that end with rhyming words (similar spelling like days/rays).',v:t=>{const L=lines(t);return L.length>=2&&e(L[0])==e(L[1])}},
+{n:'The Villanelle',e:'🔁',c:['#ff3d3d','#ff9a3d'],s:'ELA.6.R.1.4 • Villanelle',d:'A <b>villanelle</b> has <b>19 lines</b>: five tercets and a final quatrain. Two <b>refrain</b> lines repeat throughout, so the poem circles back like a thought that won’t go away.',x:'<mark>A1</mark> b <mark>A2</mark> / a b <mark>A1</mark> / a b <mark>A2</mark> ...',k:'Clue: two repeating lines (refrains)',
+ q:[['How many lines does a villanelle have?',['14','19','12'],1,'A villanelle has 19 lines.'],
+ ['Which line is a refrain (it repeats)?',['I stand and watch the gulls explore','The tide comes back to find the shore,','I count the waves, then count some more,'],1,'“The tide comes back to find the shore” repeats.',PV],
+ ['What is the effect of repeating the refrains?',['It changes the topic each time','It makes the idea of returning feel strong, like waves','It removes the rhyme'],1,'The repetition mirrors the waves coming back again and again.',PV],
+ ['What is the rhyme pattern of the first tercet (shore / view / more)?',['ABA','AAA','ABC'],0,'shore and more rhyme (A); view is different (B).',PV]],
+ p:'Write a <b>3-line tercet with a refrain</b>: line 3 must repeat line 1 exactly.',a:'The tide comes back to find the shore,<br>though storms have tossed it far from view.<br>The tide comes back to find the shore.',h:'Hint: 3 lines, and line 3 should be exactly the same as line 1.',v:t=>{const L=lines(t);return L.length>=3&&L[0].toLowerCase()==L[2].toLowerCase()}},
+{n:'Form & Meaning',e:'⚖️',c:['#2f80ed','#12a05c'],s:'ELA.6.R.1.4 • Impact on Meaning and Style',d:'A poem’s <b>form</b> shapes its <b>meaning and style</b>. A <b>sonnet</b> builds an idea and turns. A <b>villanelle</b> circles back. <b>Free verse</b> has no set rhyme or pattern, so it feels natural, like speech.',x:'Worry that keeps returning → <mark>villanelle</mark><br>Idea + surprise ending → <mark>sonnet</mark><br>Natural, flowing voice → <mark>free verse</mark>',k:'Clue: how does the form match the feeling?',
+ q:[['A poet wants the poem to feel like a worry that keeps coming back. Which form fits best?',FM.slice().reverse(),1,'Repeated refrains copy a thought that keeps returning.'],
+ ['A poet builds an idea over 12 lines and gives a surprising turn at the end. Which form?',FM,0,'A sonnet’s structure and turn fit this plan.'],
+ ['A poet wants a natural, conversational feel with no strict rules. Which form?',['Sonnet','Free verse','Villanelle'],1,'Free verse has no set pattern.'],
+ ['How does a strict form like a sonnet affect a poem’s style?',['It makes the poet organize ideas carefully within rules','It removes all rhyme','It makes the poem longer than a story'],0,'Rules shape how ideas are arranged and finished.']],
+ p:'Capstone! Pick a form (<b>sonnet, villanelle, or free verse</b>) for a poem about a worry that keeps coming back or a big surprise. Explain in 1–2 sentences why it fits.',a:'I would pick a villanelle because the repeated lines would show how a worry keeps coming back.',h:'Hint: name the form and explain why it fits. Write at least 12 words.',v:t=>words(t).length>=12&&/(sonnet|villanelle|free verse)/i.test(t)}];
+const N=W.length;
+const B=[['This stanza is a…',['Quatrain','Tercet','Couplet'],1,'Three lines make a tercet.','Snow falls.<br>The street goes quiet.<br>We wait.'],
+['What is the rhyme scheme?',S2,1,'lawn/dawn are A, sky/high are B: ABAB.','The grass on the lawn,<br>the clouds in the sky,<br>the light of the dawn,<br>the birds flying high.'],
+['What do the line breaks show?',['End stops','Enjambment','Alliteration'],1,'The sentence runs over the line breaks.','I ran and ran until the<br>hill gave way to open<br>sky.'],
+['A poem has 19 lines with two repeating refrains. It is a…',['Sonnet','Villanelle','Free verse'],1,'That is the villanelle form.'],
+['A 14-line poem ends with two rhyming lines that wrap up the idea. It is a…',FM,0,'That is a Shakespearean sonnet.'],
+['A poet repeats “never again” at the start of three stanzas. What is the effect?',['Repetition that emphasizes a strong feeling','Alliteration that adds humor','Enjambment that speeds up the poem'],0,'Repeating a phrase stresses the feeling behind it.']];
+let xp=0,streak=0,stars=[],Q,qi,ok,cur;
+const ranks=['Rookie Rhymer','Stanza Scout','Form Finder','Sonnet Sage','Legend 🏆'];
+function upd(){const k=[0,120,300,500,700].filter(t=>xp>=t).length-1;$('hd').innerHTML=`<span>${ranks[k]}</span><span>⭐ ${xp} XP</span><span>🔥 ${streak}</span>`}
+function put(h){$('pg').innerHTML=h;upd();scrollTo(0,0)}
+function boom(){const m=['🎉','⭐','✨','🎈','💥'];for(let k=0;k<22;k++){const s=document.createElement('span');s.className='cf';s.textContent=m[k%5];s.style.left=Math.random()*100+'vw';s.style.animationDelay=Math.random()*.5+'s';document.body.appendChild(s);setTimeout(()=>s.remove(),2800)}}
+function map(){const dn=stars.slice(0,N).filter(Boolean).length;
+ put(`<h1>🥊 Form Fighters!</h1><p class="sub">Poetic Forms Quest • Florida B.E.S.T. ELA.6.R.1.4<br>Beat each world to unlock the next!</p><div class="grid">`+W.map((w,i)=>{const lk=i>0&&!stars[i-1];return `<button class="wc" style="--a:${w.c[0]};--b:${w.c[1]}" ${lk?'disabled':''} onclick="teach(${i})"><span class="em">${lk?'🔒':w.e}</span><b>${w.n}</b><small>${stars[i]?'⭐'.repeat(stars[i]):lk?'Locked':'Play!'}</small></button>`}).join('')+`<button class="wc boss" ${dn<N?'disabled':''} onclick="boss()"><span class="em">${dn<N?'🔒':'👾'}</span><b>BOSS BATTLE: Form Showdown</b><small>${stars[N]?'⭐'.repeat(stars[N]):dn<N?'Beat all '+N+' worlds first':'Play!'}</small></button></div>`)}
+function teach(i){const w=W[i];put(`<div class="card" style="--a:${w.c[0]}"><div class="big">${w.e}</div><h2>${w.n}</h2><span class="std">${w.s}</span><p>${w.d}</p><div class="ex">${w.x}</div><p>🔍 ${w.k}</p><button class="go" onclick="quiz(${i})">Start! →</button><button class="back" onclick="map()">← Map</button></div>`)}
+function quiz(i){cur=i;Q=W[i].q;qi=0;ok=0;ask()}
+function boss(){cur=N;Q=B;qi=0;ok=0;ask()}
+function ask(){const q=Q[qi],b=cur==N,last=qi==Q.length-1;let miss=0;
+ put(`<div class="bar"><i style="width:${qi/Q.length*100}%"></i></div><p class="sub">${b?'👾 Boss Battle':W[cur].e+' '+W[cur].n} • Question ${qi+1} of ${Q.length}</p><div class="card" style="--a:${b?'#ff3d3d':W[cur].c[0]}">${q[4]?'<div class="pm">'+q[4]+'</div>':''}<h2>${q[0]}</h2>${q[1].map((o,k)=>`<button class="op" data-k="${k}">${o}</button>`).join('')}<div id="fb"></div></div>`);
+ document.querySelectorAll('.op').forEach(btn=>btn.onclick=()=>{const k=+btn.dataset.k;
+  if(k==q[2]){let pts=3;if(!miss){ok++;pts=10+Math.min(streak,5)*2;streak++}xp+=pts;upd();
+   document.querySelectorAll('.op').forEach(x=>x.disabled=true);btn.classList.add('right');if(!miss&&streak>=3)boom();
+   $('fb').innerHTML=`<div class="fbk g">✅ ${q[3]} <b>+${pts} XP</b></div><button class="go" id="nx">${last?'Continue →':'Next →'}</button>`;
+   $('nx').onclick=()=>{if(!last){qi++;ask()}else fin()}}
+  else{miss++;streak=0;upd();btn.disabled=true;btn.classList.add('bad');$('fb').innerHTML='<div class="fbk r">❌ Not quite! Look at the lines and try another answer.</div>'}})}
+function fin(){const t=Q.length,s=ok==t?3:ok>=t-2?2:1;stars[cur]=Math.max(stars[cur]||0,s);cur==N?result(true):create()}
+function create(){const w=W[cur];
+ put(`<div class="card" style="--a:${w.c[0]}"><h2>✍️ Your Turn: Create One!</h2><p>${w.p}</p><textarea id="ta" rows="5" placeholder="Type here... (press Enter for a new line)"></textarea><div id="fb"></div><button class="go" id="sub">Submit (+50 XP)</button><button class="back" id="skip">Skip</button></div>`);
+ $('skip').onclick=()=>result();
+ $('sub').onclick=()=>{const t=$('ta').value;
+  if(w.v(t)){xp+=50;upd();boom();$('sub').remove();$('skip').remove();$('fb').innerHTML=`<div class="fbk g">🌟 Awesome! +50 XP<br>Example:<br><i>${w.a}</i></div><button class="go" onclick="result()">Finish World →</button>`}
+  else $('fb').innerHTML=`<div class="fbk r">${w.h}</div>`}}
+function result(bd){boom();const s=stars[cur],all=stars.filter(Boolean).length==N+1;
+ put(`<div class="card"><div class="big">${bd?'🏆':'🎉'}</div><h2>${bd?'BOSS DEFEATED!':'World Complete!'}</h2><p style="font-size:40px;text-align:center;margin:0">${'⭐'.repeat(s)}</p><p>You have <b>${xp} XP</b>.${all?' You beat the whole game, poet! 🎤':' Next world unlocked!'}</p><button class="go" onclick="map()">Back to Map →</button></div>`)}
+map();
+</script></body></html>
